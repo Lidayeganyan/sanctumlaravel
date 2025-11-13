@@ -1,23 +1,23 @@
 <?php
-use App\Http\Controllers\User\RegistrationController;
-use App\Http\Controllers\User\AdminController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\User\AdminController;
+use App\Http\Controllers\User\RegistrationController;
+use Illuminate\Support\Facades\Auth;
 
-// Route::get('/register', [RegistrationController::class, 'showForm'])->name('user.register.form');
-// Route::post('/register', [RegistrationController::class, 'store'])->name('user.register.store');
-// Route::resource('/User',RegistrationController::class);
-
-
-// Route::get('/user', [RegistrationController::class, 'showForm'])->name('user.form');
 Route::get('/registration', [RegistrationController::class, 'showForm'])->name('registration.form');
-
-// Route::post('/user', [RegistrationController::class, 'store'])->name('user.store');
 Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+Route::get('/account', [AdminController::class, 'index'])->name('account');
 
-Route::get('/accout', [AdminController::class, 'index'])->name('account');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
-// Route::post('/logout', function() {
-//     Auth::logout();
-//     return redirect('/user');
-// })->name('logout');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+
+Route::get('/edit', [ProfileController::class, 'edit'])->name('user.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('user.update');

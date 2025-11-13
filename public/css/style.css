@@ -83,3 +83,14 @@
 .mb-3 label {
     color: orange;
 }
+.issue {
+    padding: 10px;
+}
+.btn1 {
+    color: #f3f3f3;
+    background: green;
+}
+.btn1:hover {
+    color: #f3f3f3;
+    background: rgb(2, 100, 2);
+}

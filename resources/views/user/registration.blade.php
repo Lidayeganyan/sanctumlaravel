@@ -4,7 +4,6 @@
     <section class="container grey-text">
         <form class="white" action="{{ route('registration.store') }}" method="POST">
             @csrf
-            
             <h4 class="center">Registration</h4>
 
             <div class="dv">
@@ -28,7 +27,9 @@
             </div>
 
             <input type="submit" value="Register" class="btn">
-
+            <p class="issue">Are you have a account?
+               <a href="{{ url('login') }}">Login</a>
+            </p>
         </form>    
     </section>
 @endsection

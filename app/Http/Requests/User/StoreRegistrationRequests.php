@@ -18,7 +18,7 @@ class StoreRegistrationRequests extends FormRequest
            'name' => 'required|string|max:25',
            'email' => 'required|email|unique:users,email',
            'password'=> 'required|min:6|same:confirm_password',
-           'confirm_password' => 'required',
+           'confirm_password' => 'required|min:6',
 
         ];
     }
@@ -29,10 +29,12 @@ class StoreRegistrationRequests extends FormRequest
             'name.required' => 'Name is required.',
             'name.max'=>"Name is too long. Please write no more than 25 characters.",
             'email.required' => 'Email is required.',
+            'email.email' => 'Please enter a valid email address.',
             'email.unique' => "This email is already in use. Please enter a unique email.",
             'password.required' => 'Password is required.',
             'password.min' => 'Password must be more than 6 characters.',
             'confirm_password.required' => 'Confirm password is required.',
+            'confirm_password.min' => 'Connfirm password must be more than 6 characters. '
             
         ];
     }

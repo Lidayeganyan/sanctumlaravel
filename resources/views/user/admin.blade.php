@@ -20,10 +20,13 @@
                             <p>{{ $user->created_at->format('d-m-Y H:i') }}</p>
                         </div>
                 </div>
-                <form action="{{ route('logout') }}" method="POST">
+                <div class="buttons">
+                   <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+                </form>     
+                <a href="{{ route('user.edit') }}" class="btn1 btn">Update profile</a>  
+                </div>
             </div>
             @else
                 <p>No user data available.</p>

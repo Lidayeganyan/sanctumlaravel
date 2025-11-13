@@ -68,13 +68,16 @@ class PostController extends Controller
             ]);
         }
         $post = Post::find($id);
+        if (!$post) {
+            return response()->json(['message' => 'Post not found'], 404);
+        }
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
 
         return response()->json([
             'status' => 1,
-            'message'=>'Post updatedS.',
+            'message'=>'Post updated.',
             'data' => $post
         ]);
     }

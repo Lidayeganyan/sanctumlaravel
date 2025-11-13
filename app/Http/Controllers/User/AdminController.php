@@ -14,10 +14,10 @@ class AdminController extends Controller
          $user = Auth::user();
          return view('user.admin', compact('user'));     
     }
-    // public function logout()
-    // {
-    //     Auth::logout();
-    //     return redirect('/registration');
-    // }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
 
 }
