@@ -4,7 +4,7 @@
         <div class="white row">
             <div class="card-header">
                 <h4 class="center">Registered User</h4>
-                </div>
+                <div>
                     @if($user)
                     <div class="card-body">
                         <div class="mb-3">
@@ -22,15 +22,15 @@
                 </div>
                 <div class="buttons">
                    <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>     
-                <a href="{{ route('user.edit') }}" class="btn1 btn">Update profile</a>  
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>     
+                     <a href="{{ route('user.edit') }}" class="btn1 btn">Update profile</a>  
                 </div>
             </div>
-            @else
-                <p>No user data available.</p>
-            @endif
+                @else
+                    <p>No user data available.</p>
+                @endif
         </div>
     </div>
 @endsection
