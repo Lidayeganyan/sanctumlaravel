@@ -22,22 +22,14 @@ class LoginController extends Controller
     {
         $result = $this->loginService->login($request->validated());
 
-        if (!$result['status']) {
-            return response()->json([
-                'status' => 0,
-                'message' => $result['message']
-            ], 401);
-        }
-
-        return response()->json([
-            'status' => 1,
-            'message' => $result['message'],
-            'user' => $result['user'],
-        ]);
+        return redirect()->route('account')->with($result)->with('success', 'Registration successful!');
+ 
     }
-      public function showLoginForm()
+    public function showLoginForm()
     {
-        // return view('user.login');
-       return redirect()->route('account');
+        if(Auth::check() && Auth::user() ){
+            return redirect()->route('account');
+        }
+         return view('user.login');
     }
 }

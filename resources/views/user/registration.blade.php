@@ -1,4 +1,3 @@
-
 @extends('layouts.body')
 @section('content')
     <section class="container grey-text">
@@ -7,12 +6,13 @@
             <h4 class="center">Registration</h4>
 
             <div class="dv">
-                  <input type="text" name="name" placeholder="Enter your Name" autocomplete="name">
-                  @error('name')<span class="text-danger">{{$message}}</span>@enderror
+                <input type="text" name="name" placeholder="Enter your Name" autocomplete="name" value="{{ old('name') }}">
+
+                @error('name')<span class="text-danger">{{$message}}</span>@enderror
             </div>
 
             <div class="dv">
-                <input type="text" name="email" placeholder="Enter your Email" autocomplete="email">
+                <input type="text" name="email" placeholder="Enter your Email" autocomplete="email" value="{{ old('email')}}">
                 @error('email')<span class="text-danger">{{$message}}</span>@enderror
             </div>
 

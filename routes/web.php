@@ -7,9 +7,11 @@ use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\RegistrationController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/registration', [RegistrationController::class, 'showForm'])->name('registration.form');
+// Route::get('/registration', [RegistrationController::class, 'showForm'])->name('registration.form');
+
+Route::get('/', [RegistrationController::class, 'showForm'])->name('registration.form');
+Route::get('/registration', [RegistrationController::class, 'showForm']);
 Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
-Route::get('/account', [AdminController::class, 'index'])->name('account');
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -19,5 +21,8 @@ Route::post('/logout', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
-Route::get('/edit', [ProfileController::class, 'edit'])->name('user.edit');
-Route::put('/profile', [ProfileController::class, 'update'])->name('user.update');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('user.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('user.update');
+    Route::get('/account', [AdminController::class, 'index'])->name('account');
+});

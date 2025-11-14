@@ -12,7 +12,10 @@ class AdminController extends Controller
     public function index()
     {  
          $user = Auth::user();
-         return view('user.admin', compact('user'));     
+         return view('user.admin', compact('user')); 
+         if(!$user){
+             return redirect('/login');
+         }    
     }
     public function logout()
     {

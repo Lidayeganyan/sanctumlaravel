@@ -28,8 +28,6 @@
                      <a href="{{ route('user.edit') }}" class="btn1 btn">Update profile</a>  
                 </div>
             </div>
-                @else
-                    <p>No user data available.</p>
                 @endif
         </div>
     </div>

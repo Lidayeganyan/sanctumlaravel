@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\UpdateProfile;
 
 class ProfileController extends Controller
 {
@@ -14,16 +15,12 @@ class ProfileController extends Controller
         return view('user.edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(UpdateProfile $request)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-        ]);
-
-        $user->update($validatedData);
+         $user = auth()->user();
+         $user->update($request->validated());
 
         return redirect()->route('account')->with('success', 'Profile updated successfully!');
     }
